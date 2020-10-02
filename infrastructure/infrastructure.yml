@@ -1,0 +1,93 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "NASA Space Apps 2020 - Can You Hear Me Now?"
+
+Resources:
+  MarsData:
+    Type: AWS::S3::Bucket
+    Properties: 
+      BucketName: 
+        "Fn::Sub": "${AWS::StackName}-mars-bucket"
+        
+  MarsRouterSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: "Mars Router Security Group"
+      GroupName: "MarsRouterSecurityGroup"
+      SecurityGroupIngress: 
+        - Description: "Allow Inbound Traffic HTTP"
+          IpProtocol: tcp
+          CidrIp: 0.0.0.0/0
+          FromPort: 80
+          ToPort: 80
+
+  EarthServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: "Earth Server Security Group"
+      GroupName: "EarthServerSecurityGroup"
+      SecurityGroupIngress: 
+        - Description: "Allow Inbound Traffic HTTP"
+          IpProtocol: tcp
+          CidrIp: 0.0.0.0/0
+          FromPort: 80
+          ToPort: 80
+
+  ESAArchiveSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: "ESA Archive Security Group"
+      GroupName: "ESAArchiveSecurityGroup"
+      SecurityGroupIngress: 
+        - Description: "Allow Inbound Traffic HTTP"
+          IpProtocol: tcp
+          CidrIp: 0.0.0.0/0
+          FromPort: 80
+          ToPort: 80
+
+#  InstanceProfileRole:
+#    Type: AWS::IAM::Role
+#    Properties: 
+#      RoleName: "EC2SSMRole"
+#      Description: "Allows SSM to attach to EC2"
+#      ManagedPolicyArns: 
+#        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+#
+#  InstanceProfile:
+#    Type: AWS::IAM::InstanceProfile
+#    Properties: 
+#      InstanceProfileName: SSMInstanceProfile
+#      Roles: 
+#        - !Ref InstanceProfileRole
+    
+  MarsRouter:
+    Type: AWS::EC2::Instance
+    Properties: 
+      InstanceType: t3.micro
+      ImageId: ami-0653812935d0743fe
+      SecurityGroupIds: 
+        - !Ref MarsRouterSecurityGroup
+
+  EarthServer:
+    Type: AWS::EC2::Instance
+    Properties: 
+      InstanceType: t3.micro
+      ImageId: ami-0653812935d0743fe
+      SecurityGroupIds: 
+        - !Ref EarthServerSecurityGroup
+
+  ESAArchive:
+    Type: AWS::EC2::Instance
+    Properties: 
+      InstanceType: t3.micro
+      ImageId: ami-0653812935d0743fe
+      SecurityGroupIds: 
+        - !Ref ESAArchiveSecurityGroup
+
+#      SsmAssociations: 
+#        - AssociationParameters: 
+#          - AssociationParameter
+#          DocumentName: String
+#      UserData: String
+
+
+

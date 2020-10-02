@@ -35,22 +35,19 @@ sls deploy
 
 How to create stack:
 ```bash
-STACK_NAME="nasa-challenge"
-aws --profile home cloudformation create-stack \
+STACK_NAME="nasa2020-canyouhearmenow"
+aws cloudformation create-stack \
     --stack-name $STACK_NAME \
-    --template-body file://infrastructure/hellomars.yml \
-    --timeout-in-minutes 10 \
-    --parameters <value>
+    --template-body file://infrastructure/infrastructure.yml
 ```
 
 How to update stack:
 ```bash
-STACK_NAME="nasa-challenge"
-aws --profile home cloudformation create-change-set \
+STACK_NAME="nasa2020-canyouhearmenow"
+aws cloudformation create-change-set \
     --stack-name $STACK_NAME \
-    --change-set-name=update-$(date +%s) \
-    --template-body file://infrastructure/hellomars.yml \
-    --parameters <value>
+    --change-set-name=update-stack-$(date +%s) \
+    --template-body file://infrastructure/infrastructure.yml
 ```
 
 # Testing
