@@ -4,3 +4,5 @@
 Challenge: https://2020.spaceappschallenge.org/challenges/connect/can-you-hear-me-now/details
 
 Team: https://2020.spaceappschallenge.org/challenges/connect/can-you-hear-me-now/teams/hellomars/project
+
+Infrastructure: hellomars.drawio
