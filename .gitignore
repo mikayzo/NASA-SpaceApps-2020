@@ -1,2 +1,5 @@
 # ignore dataset
 LEAD*
+
+# ignore serverless files
+.serverless
