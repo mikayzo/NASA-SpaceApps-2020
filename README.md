@@ -28,12 +28,12 @@ export AWS_DEFAULT_REGION=<region>
 
 # Deployment
 
-Satellite Tracker deployment:
+How to deploy/update satellite tracker:
 ```bash
 sls deploy
 ```
 
-How to create stack:
+How to deploy infrastructure stack:
 ```bash
 STACK_NAME="nasa2020-canyouhearmenow"
 aws cloudformation create-stack \
@@ -41,7 +41,7 @@ aws cloudformation create-stack \
     --template-body file://infrastructure/infrastructure.yml
 ```
 
-How to update stack:
+How to update infrastructure stack:
 ```bash
 STACK_NAME="nasa2020-canyouhearmenow"
 aws cloudformation create-change-set \
