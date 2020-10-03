@@ -138,7 +138,7 @@ Resources:
           sudo hostnamectl set-hostname mars-router
           sudo apt-get update -y
           sudo apt-get upgrade -y
-          sudo apt-get install -y curl bash ca-certificates openssl coreutils python2 python3 make gcc g++ grep util-linux binutils findutils
+          sudo apt-get install -y npm curl bash ca-certificates openssl coreutils python2 python3 make gcc g++ grep util-linux binutils findutils
 
   EarthServer:
     Type: AWS::EC2::Instance
@@ -158,7 +158,7 @@ Resources:
           sudo hostnamectl set-hostname earth-server
           sudo apt-get update -y
           sudo apt-get upgrade -y
-          sudo apt-get install -y curl bash ca-certificates openssl coreutils python2 python3 make gcc g++ grep util-linux binutils findutils
+          sudo apt-get install -y npm curl bash ca-certificates openssl coreutils python2 python3 make gcc g++ grep util-linux binutils findutils
 
   ESAArchive:
     Type: AWS::EC2::Instance
@@ -178,7 +178,7 @@ Resources:
           sudo hostnamectl set-hostname esa-archive
           sudo apt-get update -y
           sudo apt-get upgrade -y
-          sudo apt-get install -y curl bash ca-certificates openssl coreutils python2 python3 make gcc g++ grep util-linux binutils findutils
+          sudo apt-get install -y npm curl bash ca-certificates openssl coreutils python2 python3 make gcc g++ grep util-linux binutils findutils
 
   SatelliteTracker:
     Type: AWS::EC2::Instance
@@ -198,7 +198,7 @@ Resources:
           sudo hostnamectl set-hostname satellite-tracker
           sudo apt-get update -y
           sudo apt-get upgrade -y
-          sudo apt-get install -y curl bash ca-certificates openssl coreutils python2 python3 make gcc g++ grep util-linux binutils findutils
+          sudo apt-get install -y npm curl bash ca-certificates openssl coreutils python2 python3 make gcc g++ grep util-linux binutils findutils
 
   MarsRouterIP:
     Type: AWS::EC2::EIP
