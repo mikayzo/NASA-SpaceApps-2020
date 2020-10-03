@@ -20,7 +20,7 @@ Satellite Tracker | satellite-tracker.hellomars.co
 
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 
-# Deployment
+# Service Deployment
 
 ## Configuring AWS CLI
 
@@ -29,8 +29,6 @@ export AWS_ACCESS_KEY_ID=<access_key_id>
 export AWS_SECRET_ACCESS_KEY=<secret_access_key>
 export AWS_DEFAULT_REGION=<region>
 ```
-
-## Services
 
 How to deploy infrastructure stack:
 ```bash
@@ -49,6 +47,17 @@ aws cloudformation create-change-set \
     --change-set-name=update-stack-$(date +%s) \
     --template-body file://infrastructure/infrastructure.yml \
     --capabilities CAPABILITY_NAMED_IAM
+```
+
+## Running Services
+
+How to run satellite tracker:
+
+```bash
+ssh -A ubuntu@satellite-tracker.hellomars.co -i ~/.ssh/nasa-spaceapps-2020.pem
+cd NASA-SpaceApps-2020/satellite_tracker/
+npm install
+sudo nohup node index.js &
 ```
 
 # Attaching to instances
