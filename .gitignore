@@ -4,6 +4,7 @@ LEAD*
 # ignore serverless files
 .serverless
 
+# ignore mac stuff
 .DS_Store
 
 # ignore node packages
