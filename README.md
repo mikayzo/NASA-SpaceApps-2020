@@ -67,6 +67,20 @@ npm install
 sudo HOSTNAME=esa-archive.hellomars.co nohup node index.js &
 ```
 
+## Test services
+
+Satellite Tracker:
+```bash
+curl -X GET http://satellite-tracker.hellomars.co:80
+```
+
+Camera Service:
+```bash
+curl -X POST -H "content-type: application/json" http://esa-archive.hellomars.co/takepic -d '{
+  "alpha": 2.9
+}'
+```
+
 # Attaching to instances
 ```bash
 aws ssm start-session --target <instance_id>
