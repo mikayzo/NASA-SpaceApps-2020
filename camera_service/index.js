@@ -17,8 +17,6 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 app.post('/', (req, res) => { 
-    roverData = JSON.stringify(req.body)
-
     if (between(req.body.alpha, east, east + interval)) {
       res.send(url + "/0")
     } else if (between(req.body.alpha, east + interval, east + 2*interval)) {
