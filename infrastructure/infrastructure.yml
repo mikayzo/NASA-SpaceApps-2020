@@ -30,28 +30,6 @@ Resources:
           FromPort: -1
           ToPort: -1
 
-  EarthServerSecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties: 
-      GroupDescription: "Earth Server Security Group"
-      GroupName: "EarthServerSecurityGroup"
-      SecurityGroupIngress: 
-        - Description: "Allow Inbound Traffic HTTP"
-          IpProtocol: tcp
-          CidrIp: 0.0.0.0/0
-          FromPort: 80
-          ToPort: 80
-        - Description: "Allow Inbound Traffic SSH"
-          IpProtocol: tcp
-          CidrIp: 0.0.0.0/0
-          FromPort: 22
-          ToPort: 22
-        - Description: "Allow Inbound Traffic ICMP"
-          IpProtocol: icmp
-          CidrIp: 0.0.0.0/0
-          FromPort: -1
-          ToPort: -1
-
   ESAArchiveSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties: 
@@ -140,26 +118,6 @@ Resources:
           sudo apt-get upgrade -y
           sudo apt-get install -y npm curl bash ca-certificates openssl coreutils python2 python3 make gcc g++ grep util-linux binutils findutils
 
-  EarthServer:
-    Type: AWS::EC2::Instance
-    Properties: 
-      InstanceType: t3.micro
-      ImageId: ami-008dea09a148cea39
-      IamInstanceProfile: !Ref InstanceProfile
-      SecurityGroupIds: 
-        - !Ref EarthServerSecurityGroup
-      Tags:
-        - Key: "Name"
-          Value: "Earth Server"
-      KeyName: nasa-spaceapps-2020
-      UserData:
-        Fn::Base64: |
-          #!/bin/bash
-          sudo hostnamectl set-hostname earth-server
-          sudo apt-get update -y
-          sudo apt-get upgrade -y
-          sudo apt-get install -y npm curl bash ca-certificates openssl coreutils python2 python3 make gcc g++ grep util-linux binutils findutils
-
   ESAArchive:
     Type: AWS::EC2::Instance
     Properties: 
@@ -204,11 +162,6 @@ Resources:
     Type: AWS::EC2::EIP
     Properties: 
       InstanceId: !Ref MarsRouter
-
-  EarthServerIP:
-    Type: AWS::EC2::EIP
-    Properties: 
-      InstanceId: !Ref EarthServer
 
   ESAArchiveIP:
     Type: AWS::EC2::EIP
