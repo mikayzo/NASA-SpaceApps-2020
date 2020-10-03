@@ -15,8 +15,9 @@ Team        | HelloMars | https://2020.spaceappschallenge.org/challenges/connect
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 - [sls](https://www.serverless.com/framework/docs/getting-started/)
 
+# Deployment
 
-## Configure AWS CLI
+## Configuring AWS CLI
 
 ```bash
 export AWS_ACCESS_KEY_ID=<access_key_id>
@@ -24,9 +25,7 @@ export AWS_SECRET_ACCESS_KEY=<secret_access_key>
 export AWS_DEFAULT_REGION=<region>
 ```
 
-
-
-# Deployment
+## Services
 
 How to deploy/update satellite tracker:
 ```bash
@@ -38,7 +37,8 @@ How to deploy infrastructure stack:
 STACK_NAME="nasa2020-canyouhearmenow"
 aws cloudformation create-stack \
     --stack-name $STACK_NAME \
-    --template-body file://infrastructure/infrastructure.yml
+    --template-body file://infrastructure/infrastructure.yml \
+    --capabilities CAPABILITY_NAMED_IAM
 ```
 
 How to update infrastructure stack:
@@ -47,7 +47,8 @@ STACK_NAME="nasa2020-canyouhearmenow"
 aws cloudformation create-change-set \
     --stack-name $STACK_NAME \
     --change-set-name=update-stack-$(date +%s) \
-    --template-body file://infrastructure/infrastructure.yml
+    --template-body file://infrastructure/infrastructure.yml \
+    --capabilities CAPABILITY_NAMED_IAM
 ```
 
 # Testing
@@ -56,3 +57,8 @@ To test Satellite Tracker execute:
 ```bash
 sls invoke -f satellite_tracker --path data.json
 ```
+
+
+
+
+#### SETUP SSM

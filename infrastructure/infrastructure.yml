@@ -44,44 +44,86 @@ Resources:
           FromPort: 80
           ToPort: 80
 
-#  InstanceProfileRole:
-#    Type: AWS::IAM::Role
-#    Properties: 
-#      RoleName: "EC2SSMRole"
-#      Description: "Allows SSM to attach to EC2"
-#      ManagedPolicyArns: 
-#        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
-#
-#  InstanceProfile:
-#    Type: AWS::IAM::InstanceProfile
-#    Properties: 
-#      InstanceProfileName: SSMInstanceProfile
-#      Roles: 
-#        - !Ref InstanceProfileRole
+  InstanceProfileRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: "EC2SSMRole"
+      Description: "Allows SSM to attach to EC2"
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+              - ec2.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+
+  InstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      InstanceProfileName: SSMInstanceProfile
+      Roles:
+        - !Ref InstanceProfileRole
     
   MarsRouter:
     Type: AWS::EC2::Instance
     Properties: 
       InstanceType: t3.micro
       ImageId: ami-0653812935d0743fe
+      IamInstanceProfile: !Ref InstanceProfile
       SecurityGroupIds: 
         - !Ref MarsRouterSecurityGroup
+      Tags:
+        - Key: "Name"
+          Value: "Mars Router"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          sudo yum update -y
+          sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+          sudo systemctl enable amazon-ssm-agent
+          sudo systemctl start amazon-ssm-agent
 
   EarthServer:
     Type: AWS::EC2::Instance
     Properties: 
       InstanceType: t3.micro
       ImageId: ami-0653812935d0743fe
+      IamInstanceProfile: !Ref InstanceProfile
       SecurityGroupIds: 
         - !Ref EarthServerSecurityGroup
+      Tags:
+        - Key: "Name"
+          Value: "Earth Server"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          sudo yum update -y
+          sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+          sudo systemctl enable amazon-ssm-agent
+          sudo systemctl start amazon-ssm-agent
 
   ESAArchive:
     Type: AWS::EC2::Instance
     Properties: 
       InstanceType: t3.micro
       ImageId: ami-0653812935d0743fe
+      IamInstanceProfile: !Ref InstanceProfile
       SecurityGroupIds: 
         - !Ref ESAArchiveSecurityGroup
+      Tags:
+        - Key: "Name"
+          Value: "ESA Archive"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          sudo yum update -y
+          sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+          sudo systemctl enable amazon-ssm-agent
+          sudo systemctl start amazon-ssm-agent
 
 #      SsmAssociations: 
 #        - AssociationParameters: 
