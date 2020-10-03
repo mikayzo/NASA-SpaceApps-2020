@@ -3,3 +3,8 @@ LEAD*
 
 # ignore serverless files
 .serverless
+
+.DS_Store
+
+# ignore node packages
+node_modules
