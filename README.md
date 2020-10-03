@@ -5,15 +5,20 @@ Description | Value | Link
 Challenge   | Can You Hear Me Now? | https://2020.spaceappschallenge.org/challenges/connect/can-you-hear-me-now/details
 Team        | HelloMars | https://2020.spaceappschallenge.org/challenges/connect/can-you-hear-me-now/teams/hellomars/project
 
-
 ![Image of Infrastructure](docs/infrastructure.png)
+
+Server | Endpoint
+----------- | ------------
+Mars Router | mars-router.hellomars.co
+Earth Server | earth-server.hellomars.co
+ESA Archive | esa-archive.hellomars.co
+Satellite Tracker | satellite-tracker.hellomars.co
 
 # Development
 
 ## Prerequisites
 
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
-- [sls](https://www.serverless.com/framework/docs/getting-started/)
 
 # Deployment
 
@@ -26,11 +31,6 @@ export AWS_DEFAULT_REGION=<region>
 ```
 
 ## Services
-
-How to deploy/update satellite tracker:
-```bash
-sls deploy
-```
 
 How to deploy infrastructure stack:
 ```bash
@@ -49,13 +49,6 @@ aws cloudformation create-change-set \
     --change-set-name=update-stack-$(date +%s) \
     --template-body file://infrastructure/infrastructure.yml \
     --capabilities CAPABILITY_NAMED_IAM
-```
-
-# Testing
-
-To test Satellite Tracker execute:
-```bash
-sls invoke -f satellite_tracker --path data.json
 ```
 
 # Attaching to instances
