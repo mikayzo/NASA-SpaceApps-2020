@@ -52,12 +52,19 @@ aws cloudformation create-change-set \
 ## Running Services
 
 How to run satellite tracker:
-
 ```bash
 ssh -A ubuntu@satellite-tracker.hellomars.co -i ~/.ssh/nasa-spaceapps-2020.pem
 cd NASA-SpaceApps-2020/satellite_tracker/
 npm install
 sudo nohup node index.js &
+```
+
+How to run camera service:
+```bash
+ssh -A ubuntu@esa-archive.hellomars.co -i ~/.ssh/nasa-spaceapps-2020.pem
+cd NASA-SpaceApps-2020/camera_service/
+npm install
+sudo HOSTNAME=esa-archive.hellomars.co nohup node index.js &
 ```
 
 # Attaching to instances

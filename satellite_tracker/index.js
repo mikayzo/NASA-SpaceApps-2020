@@ -17,27 +17,6 @@ let tracker_info = {
 app.get('/', async (req, res) => {
     res.json(tracker_info);
 })
-app.get('*', function(req, res) {
-    res.status(404).send();
-});
-app.post('*', function(req, res) {
-    res.status(404).send();
-});
-app.put('*', function(req, res) {
-    res.status(404).send();
-});
-app.delete('*', function(req, res) {
-    res.status(404).send();
-});
-app.options('*', function(req, res) {
-    res.status(404).send();
-});
-app.trace('*', function(req, res) {
-    res.status(404).send();
-});
-app.patch('*', function(req, res) {
-    res.status(404).send();
-});
 
 app.listen(port, () => {
     setInterval(getTrackerInfo, calculation_interval)
