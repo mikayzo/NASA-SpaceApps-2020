@@ -58,7 +58,7 @@ To test Satellite Tracker execute:
 sls invoke -f satellite_tracker --path data.json
 ```
 
-
-
-
-#### SETUP SSM
+# Attaching to instances
+```bash
+aws ssm start-session --target <instance_id>
+```
