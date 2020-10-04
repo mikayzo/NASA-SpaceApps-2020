@@ -19,7 +19,7 @@ app.post('/takepic', (req, res) => {
     } else if (between(req.body.alpha, east + 3 * interval, south)) {
         res.send("https://nasa2020-canyouhearmenow-mars-bucket.s3.eu-north-1.amazonaws.com/3.jpg")
     } else {
-        res.send("Try turning another way :)");
+        res.send("https://nasa2020-canyouhearmenow-mars-bucket.s3.eu-north-1.amazonaws.com/other.jpg");
     }
 })
 
