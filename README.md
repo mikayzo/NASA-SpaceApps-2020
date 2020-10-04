@@ -83,4 +83,5 @@ curl -X POST -H "content-type: application/json" http://esa-archive.hellomars.co
 # Attaching to instances
 ```bash
 aws ssm start-session --target <instance_id>
+/bin/bash
 ```
