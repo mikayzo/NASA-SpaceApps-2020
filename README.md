@@ -85,3 +85,8 @@ curl -X POST -H "content-type: application/json" http://esa-archive.hellomars.co
 aws ssm start-session --target <instance_id>
 /bin/bash
 ```
+
+# Other projects parts
+https://github.com/MonikaVen/mission_app
+
+https://github.com/MonikaVen/earth_node
