@@ -66,7 +66,7 @@ npm install
 sudo HOSTNAME=esa-archive.hellomars.co nohup node index.js &
 ```
 
-## Testing services
+## Testing Services
 
 Satellite Tracker:
 ```bash
