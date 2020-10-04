@@ -10,7 +10,6 @@ Team        | HelloMars | https://2020.spaceappschallenge.org/challenges/connect
 Server | Endpoint
 ----------- | ------------
 Mars Router | mars-router.hellomars.co
-Earth Server | earth-server.hellomars.co
 ESA Archive | esa-archive.hellomars.co
 Satellite Tracker | satellite-tracker.hellomars.co
 
