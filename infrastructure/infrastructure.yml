@@ -13,7 +13,12 @@ Resources:
     Properties: 
       GroupDescription: "Mars Router Security Group"
       GroupName: "MarsRouterSecurityGroup"
-      SecurityGroupIngress: 
+      SecurityGroupIngress:
+        - Description: "Allow Inbound Traffic App"
+          IpProtocol: tcp
+          CidrIp: 0.0.0.0/0
+          FromPort: 3000
+          ToPort: 3000
         - Description: "Allow Inbound Traffic HTTP"
           IpProtocol: tcp
           CidrIp: 0.0.0.0/0
@@ -35,7 +40,12 @@ Resources:
     Properties: 
       GroupDescription: "ESA Archive Security Group"
       GroupName: "ESAArchiveSecurityGroup"
-      SecurityGroupIngress: 
+      SecurityGroupIngress:
+        - Description: "Allow Inbound Traffic App"
+          IpProtocol: tcp
+          CidrIp: 0.0.0.0/0
+          FromPort: 3000
+          ToPort: 3000
         - Description: "Allow Inbound Traffic HTTP"
           IpProtocol: tcp
           CidrIp: 0.0.0.0/0
@@ -57,7 +67,12 @@ Resources:
     Properties: 
       GroupDescription: "Satellite Tracker Security Group"
       GroupName: "SatelliteTrackerecurityGroup"
-      SecurityGroupIngress: 
+      SecurityGroupIngress:
+        - Description: "Allow Inbound Traffic App"
+          IpProtocol: tcp
+          CidrIp: 0.0.0.0/0
+          FromPort: 3000
+          ToPort: 3000
         - Description: "Allow Inbound Traffic HTTP"
           IpProtocol: tcp
           CidrIp: 0.0.0.0/0
